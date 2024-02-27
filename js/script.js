@@ -70,7 +70,7 @@ function playGame() {
 
         // Increase each count depending on the round result
         if (roundResult === 'WIN') {
-            roundsWinned++;
+            roundsWon++;
         } else if (roundResult === 'LOSE') {
             roundsLost++;
         }
@@ -83,11 +83,14 @@ function playGame() {
     }
 
     // Decide game result by comparing rounds won and lost by the player
-    if (roundsWinned === roundsLost) {
+    if (roundsWon === roundsLost) {
         console.log('Stalemate!')
-    } else if (roundsWinned > roundsLost) {
+        return 'STALEMATE'
+    } else if (roundsWon > roundsLost) {
         console.log('You Win! Congratulations!')
-    } else if (roundsWinned < roundsLost) {
+        return 'WINNER'
+    } else if (roundsWon < roundsLost) {
         console.log('You Lose! Better luck next time!')
+        return 'LOSER'
     }
 }
