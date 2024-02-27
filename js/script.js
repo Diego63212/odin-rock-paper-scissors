@@ -1,5 +1,5 @@
 let computerChoice = getComputerChoice();
-let playerChoice = 'rock'
+let playerChoice = 'rock';
 
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3 + 1);
@@ -38,7 +38,7 @@ function playRound(playerSelection, computerSelection) {
 
     // Player choice is Paper
     if (playerSelection === 'PAPER' && computerSelection === 'ROCK') {
-        console.log('You Win! Paper beats Rock')
+        console.log('You Win! Paper beats Rock');
         return 'WIN';
     } else if (playerSelection === 'PAPER' && computerSelection === 'SCISSORS') {
         console.log('You Lose! Scissors beats Paper');
@@ -75,8 +75,8 @@ function playGame() {
             roundsLost++;
         }
         
-        console.log(`Rounds Won: ${roundsWon}`)
-        console.log(`Rounds Lost: ${roundsLost}`)
+        console.log(`Rounds Won: ${roundsWon}`);
+        console.log(`Rounds Lost: ${roundsLost}`);
 
         // Randomize computer choice after each round so computer choice is already known
         computerChoice = getComputerChoice();
@@ -84,13 +84,13 @@ function playGame() {
 
     // Decide game result by comparing rounds won and lost by the player
     if (roundsWon === roundsLost) {
-        console.log('Stalemate!')
-        return 'STALEMATE'
+        console.log('Stalemate!');
+        return 'STALEMATE';
     } else if (roundsWon > roundsLost) {
-        console.log('You Win! Congratulations!')
-        return 'WINNER'
+        console.log('You Win! Congratulations!');
+        return 'WINNER';
     } else if (roundsWon < roundsLost) {
-        console.log('You Lose! Better luck next time!')
-        return 'LOSER'
+        console.log('You Lose! Better luck next time!');
+        return 'LOSER';
     }
 }
