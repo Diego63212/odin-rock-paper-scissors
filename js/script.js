@@ -1,17 +1,17 @@
 let computerChoice = getComputerChoice();
 let playerChoice = 'rock';
 
+// Returns the computer choice depending on a random number
 function getComputerChoice() {
-    let randomNumber = Math.floor(Math.random() * 3 + 1);
+    let randomChoice = Math.floor(Math.random() * 3 + 1);
     
-    // Returns a choice depending on a number from 1 to 3
-    if (randomNumber === 1) {
+    if (randomChoice === 1) {
         console.log('Computer: Rock');
         return 'Rock';
-    } else if (randomNumber === 2) {
+    } else if (randomChoice === 2) {
         console.log('Computer: Paper');
         return 'Paper';
-    } else if (randomNumber === 3) {
+    } else if (randomChoice === 3) {
         console.log('Computer: Scissors');
         return 'Scissors';
     }
@@ -21,7 +21,7 @@ function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toUpperCase();
     computerSelection = computerSelection.toUpperCase();
 
-    // If both choices are the same declare a tie
+    // If both choices are the same declare a tie to end the round early
     if (playerSelection === computerSelection) {
         console.log('Tie! Same choice');
         return 'TIE';
@@ -59,16 +59,16 @@ function playGame() {
     let roundsWon = 0;
     let roundsLost = 0;
 
-    // Loop five times and count rounds won and lost
+    // Loop five times to count rounds won and lost
     for (let i = 0; i < 5; i++) {
         let roundResult;
 
         playerChoice = prompt('Input your choice (rock, paper, scissors)', 'rock');
         
-        // Plays a round and returns a string with the result
+        // Plays a single time to get a round result
         roundResult = playRound(playerChoice, computerChoice);
 
-        // Increase each count depending on the round result
+        // Increase either count depending on the round result
         if (roundResult === 'WIN') {
             roundsWon++;
         } else if (roundResult === 'LOSE') {
@@ -82,7 +82,7 @@ function playGame() {
         computerChoice = getComputerChoice();
     }
 
-    // Decide game result by comparing rounds won and lost by the player
+    // Compare rounds results to declare a winner of the game
     if (roundsWon === roundsLost) {
         console.log('Stalemate!');
         return 'STALEMATE';
