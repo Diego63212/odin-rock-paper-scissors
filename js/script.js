@@ -56,7 +56,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function playGame() {
-    let roundsWinned = 0;
+    let roundsWon = 0;
     let roundsLost = 0;
 
     // Loop five times and count rounds won and lost
@@ -75,9 +75,10 @@ function playGame() {
             roundsLost++;
         }
         
-        console.log(`Rounds Winned: ${roundsWinned}`)
+        console.log(`Rounds Won: ${roundsWon}`)
         console.log(`Rounds Lost: ${roundsLost}`)
-        // Randomize computer choice after each round
+
+        // Randomize computer choice after each round so computer choice is already known
         computerChoice = getComputerChoice();
     }
 
