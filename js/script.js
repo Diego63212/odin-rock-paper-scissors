@@ -1,27 +1,26 @@
-const MAX_ROUNDS = 5;
+const MAX_ROUNDS = 6;
 
 const container = document.querySelector('.container');
-const roundText = document.querySelector('#round-result')
-const scorePlayerText = document.querySelector('#round-won')
-const computerPlayerText = document.querySelector('#round-lost')
-const playerScore = document.querySelector('#score-player');
-const computerScore = document.querySelector('#score-computer');
-const neutralScore = document.querySelector('#score-tied')
+const roundText = document.querySelector('#round-result');
+
+const playerScoreText = document.querySelector('#score-player');
+const computerScoreText = document.querySelector('#score-computer');
+const tiedScoreText = document.querySelector('#score-tied');
 
 let computerChoice = getComputerChoice();
-let playerChoice = 'rock';
+let playerChoice = 'ROCK';
 
-let roundsWon = 0;
-let roundsLost = 0;
-let roundsTied = 0;
+let playerScore = 0;
+let computerScore = 0;
+let tiedScore = 0;
 
 let gameFinished = false;
 
 // Listen to bubbling click to get the player choice
 container.addEventListener('click', event => {
-    if (gameFinished) resetGame();
-    playGame(event.target.textContent)
     event.stopPropagation();
+    if (gameFinished) resetGame();
+    playGame(event.target.textContent);
 })
 
 // Returns the computer choice depending on a random number
@@ -82,42 +81,42 @@ function playGame(playerSelection) {
     let roundResult = playRound(playerSelection, getComputerChoice());
     
     if (roundResult === 'WIN') {
-        roundsWon++;
+        playerScore++;
     } else if (roundResult === 'LOSE') {
-        roundsLost++;
+        computerScore++;
     } else if (roundResult === 'TIE') {
-        roundsTied++;
+        tiedScore++;
     }
 
     // Update scoring text
-    playerScore.textContent = roundsWon;
-    computerScore.textContent = roundsLost;
-    neutralScore.textContent = roundsTied;
+    playerScoreText.textContent = playerScore;
+    computerScoreText.textContent = computerScore;
+    tiedScoreText.textContent = tiedScore;
     
-    let totalRounds = roundsWon + roundsLost + roundsTied;
+    let totalRounds = playerScore + computerScore + tiedScore;
 
-    if (roundsWon === roundsLost && (totalRounds === MAX_ROUNDS)) {
+    if (playerScore === computerScore && (totalRounds === MAX_ROUNDS)) {
         gameFinished = true;
         roundText.textContent = 'STALEMATE'
         alert('STALEMATE!')
         return 'STALEMATE';
-    } else if (roundsWon > roundsLost && (totalRounds === MAX_ROUNDS)) {
+    } else if (playerScore > computerScore && (totalRounds === MAX_ROUNDS)) {
         gameFinished = true;
         roundText.textContent = 'WINNER!'
         alert('You Win! Congratulations!')
         return 'WINNER';
-    } else if (roundsWon < roundsLost && (totalRounds === MAX_ROUNDS)) {
+    } else if (playerScore < computerScore && (totalRounds === MAX_ROUNDS)) {
         gameFinished = true;
         roundText.textContent = 'LOSER!'
         alert('You Lose! Better luck next time!')
         return 'LOSER';
     }
 }
-
+// Allows the game to be played again after ending
 function resetGame() {
     roundText.textContent = 'Press a button!';
-    roundsWon = 0;
-    roundsLost = 0;
-    roundsTied = 0;
+    playerScore = 0;
+    computerScore = 0;
+    tiedScore = 0;
     gameFinished = false;
 }
