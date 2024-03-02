@@ -17,10 +17,9 @@ let roundsTied = 0;
 
 let gameFinished = false;
 
-// Listen to click to get the player choice
+// Listen to bubbling click to get the player choice
 container.addEventListener('click', event => {
     if (gameFinished) resetGame();
-
     playGame(event.target.textContent)
     event.stopPropagation();
 })
@@ -122,43 +121,3 @@ function resetGame() {
     roundsTied = 0;
     gameFinished = false;
 }
-
-/* function playGame() {
-    let roundsWon = 0;
-    let roundsLost = 0;
-
-    // Loop five times to count rounds won and lost
-    for (let i = 0; i < 5; i++) {
-        let roundResult;
-
-        playerChoice = prompt('Input your choice (rock, paper, scissors)', 'rock');
-        
-        // Plays a single time to get a round result
-        roundResult = playRound(playerChoice, computerChoice);
-
-        // Increase either count depending on the round result
-        if (roundResult === 'WIN') {
-            roundsWon++;
-        } else if (roundResult === 'LOSE') {
-            roundsLost++;
-        }
-        
-        console.log(`Rounds Won: ${roundsWon}`);
-        console.log(`Rounds Lost: ${roundsLost}`);
-
-        // Randomize computer choice after each round so computer choice is already known
-        computerChoice = getComputerChoice();
-    }
-
-    // Compare rounds results to declare a winner of the game
-    if (roundsWon === roundsLost) {
-        console.log('Stalemate!');
-        return 'STALEMATE';
-    } else if (roundsWon > roundsLost) {
-        console.log('You Win! Congratulations!');
-        return 'WINNER';
-    } else if (roundsWon < roundsLost) {
-        console.log('You Lose! Better luck next time!');
-        return 'LOSER';
-    }
-} */
