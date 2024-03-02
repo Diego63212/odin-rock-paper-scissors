@@ -5,8 +5,23 @@
         <meta charset="UTF-8">
         <meta content="width=device-width">
         <title>Odin Rock paper scissors</title>
-        <script src="./js/script.js" defer></script>
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/script.js" defer></script>
     </head>
 
-    <body></body>
+    <body>
+        <div class="container">
+            <button id="btn-rock">Rock</button>
+            <button id="btn-paper">Paper</button>
+            <button id="btn-scissors">Scissors</button>
+        </div>
+        <div class="result-container">
+            <p class="text" id="round-result">Press a button!</p>
+            <div class="score-container">
+                <p class="text score" id="round-won">Rounds won: <span id="score-player">0</span></p>
+                <p class="text score" id="round-lost">Rounds lost: <span id="score-computer">0</span></p>
+                <p class="text score" id="round-tied">Rounds tied: <span id="score-tied">0</span></p>
+            </div>
+        </div>
+    </body>
 </html>
