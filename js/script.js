@@ -19,8 +19,9 @@ let gameFinished = false;
 // Listen to bubbling click to get the player choice
 container.addEventListener('click', event => {
     event.stopPropagation();
-    if (gameFinished) resetGame();
-    playGame(event.target.textContent);
+    if (event.target.nodeName === 'BUTTON') {
+        playGame(event.target.textContent);
+    }
 })
 
 // Returns the computer choice depending on a random number
@@ -78,8 +79,13 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function playGame(playerSelection) {
-    let roundResult = playRound(playerSelection, getComputerChoice());
+    if (gameFinished) {
+        resetGame();
+        return
+    }
     
+    let roundResult = playRound(playerSelection, getComputerChoice());
+
     if (roundResult === 'WIN') {
         playerScore++;
     } else if (roundResult === 'LOSE') {
@@ -88,29 +94,31 @@ function playGame(playerSelection) {
         tiedScore++;
     }
 
-    // Update scoring text
-    playerScoreText.textContent = playerScore;
-    computerScoreText.textContent = computerScore;
-    tiedScoreText.textContent = tiedScore;
+    // Input scores into UI text
+    updateScore()
     
     let totalRounds = playerScore + computerScore + tiedScore;
 
     if (playerScore === computerScore && (totalRounds === MAX_ROUNDS)) {
         gameFinished = true;
-        roundText.textContent = 'STALEMATE'
-        alert('STALEMATE!')
-        return 'STALEMATE';
+        roundText.textContent = 'STALEMATE!'
+        alert('Stalemate!')
     } else if (playerScore > computerScore && (totalRounds === MAX_ROUNDS)) {
         gameFinished = true;
         roundText.textContent = 'WINNER!'
         alert('You Win! Congratulations!')
-        return 'WINNER';
     } else if (playerScore < computerScore && (totalRounds === MAX_ROUNDS)) {
         gameFinished = true;
         roundText.textContent = 'LOSER!'
         alert('You Lose! Better luck next time!')
-        return 'LOSER';
     }
+}
+
+function updateScore() {
+    // Update scoring text
+    playerScoreText.textContent = playerScore;
+    computerScoreText.textContent = computerScore;
+    tiedScoreText.textContent = tiedScore;
 }
 // Allows the game to be played again after ending
 function resetGame() {
@@ -118,5 +126,6 @@ function resetGame() {
     playerScore = 0;
     computerScore = 0;
     tiedScore = 0;
+    updateScore()
     gameFinished = false;
 }
