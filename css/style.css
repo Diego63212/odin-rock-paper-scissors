@@ -12,6 +12,10 @@ body {
     background-color: rgb(38, 45, 54);
 }
 
+button {
+    cursor: pointer;
+}
+
 main {
     display: flex;
     flex-direction: column;
